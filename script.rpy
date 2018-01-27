@@ -6,18 +6,19 @@ define w = Character("Whiskey")
 
 image mako neutral = "mako_neutral.jpeg"
 
+image bg room = "background.jpg"
+
 label start:
     $ pointsChacha = 0
     $ pointsSoda = 0
     $ pointsWhiskey = 0
 
-    scene bg room
-    jump group_chat
-    show jordan lambsey
+    scene bg room with fade
+    show jordan lambsey with dissolve
 
     "...and just finish that with a fresh lime - and you've got yourself a delicious egg stir fry with rice noodles!"
 
-    show mako neutral
+    show mako neutral with moveinright
     m "(Uggghh)"
     m "(Did I just watch recipe videos for 6 hours straight?)"
     m "(I can't even cook that well!!!)"
@@ -27,8 +28,8 @@ label start:
     jump tag_yourself
 
 label tag_yourself:
-    show juice text at left
-    show mako neutral at right
+    show juice text at left with moveinleft
+    show mako neutral at right with move
     j "MAKO. Which one of these are you, I am definitely Tom"
 
     menu:
@@ -60,28 +61,32 @@ label tag_yourself:
             m "I've tried to get in touch with them, but I've been so busy..."
             m "(you weren't busy, you were JUST WATCHING Jordan Lambsey)"
             j "Were you watching food videos again"
-            m "Okay yeah"
+            m "Okay yeah. I was"
         "I was busy watching videos":
             $ pointsWhiskey += 1
             $ pointsChacha += 1
             m "Nope...I've holed myself up in my room tbh"
-            j "OK glad you're being honest lol"
+            j "OK glad you're being honest mako."
 
+    m "I should ask Soda, Whiskey, and Chacha how they're doing"
     j "we should all do something together before the summer ends"
     j "it'll be the last time we see each other for a long time"
+    j "maybe a picnic"
     m "oh...that would be a great idea!"
+    m "(ok, gotta message thr group)"
     jump group_chat
 
 label group_chat:
-    scene bg group
     show mako neutral at left
     show juice neutral at left
     show chacha neutral at right
     show soda neutral at right
     show whiskey neutral at right
 
-    m "hey everyone me and Juice were thinking about a picnic get-together tomorrow"
-    j "yes picnic"
+    m "yo poops"
+    w "sup mako"
+    m "me and Juice were thinking about a picnic get-together tomorrow"
+    j "yes. picnic"
     j "I will bring juice"
     m "I want to see everyone one last time before the end of summer"
     w "Food is always a good idea"
@@ -122,7 +127,8 @@ label group_chat:
             $ pointsWhiskey += 1
             m "(I don't want to step on any toes here...)"
 
-    c "really, it's ok! I need to go back to studying now."
+    c "I'll let you know tomorrow. I really need to finish this chapter tonight"
+    m "OK!"
     c "have fun..."
     c "(Chacha has left the conversation)"
     m "(it...sounded like Whiskey hurt her feelings a bit)"
@@ -130,5 +136,29 @@ label group_chat:
     s "I might have broke the bars. and the Monkeys."
     s "What'd I miss"
     m "we were trying to make plans for a picnic and get Chacha to come"
+    s "OH WORD!!!"
+    s "I'll go out first thing tomorrow to buy some stuff"
+    m "soda you're the best"
 
-    return
+label talk_whiskey:
+    m "hey whiskey"
+    w "mako!! good idea with the picnic" with vpunch
+    m "yes! same"
+    m "just checking what you're bringing tomorrow"
+    w "oh darn, were we supposed to bring food?"
+    m "kinda yeah"
+    m "I was planning to make some chicken stir fry for everyone BUT LIKE will it even turn out good?? WHO KNOWS!!"
+    w "I would eat your stirfry mako. there's no bottom limit for what I'd eat"
+    w "so hmmm food to bring..."
+    w "maybe I'll buy some mackerel? Chacha isn't coming so I won't have to bring as much"
+
+    menu:
+        "I'm going to talk to her about that":
+            m "actually..."
+
+
+label talk_chacha:
+
+label talk_soda:
+
+return
