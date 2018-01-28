@@ -7,14 +7,16 @@ define w = Character("Whiskey", who_color="#6191e8")
 define fade = Fade(0.5, 0.5, 0.5)
 
 image mako neutral = "mako_neutral.png"
-image mako phone = "mako_phone_orange.png"
 image chacha neutral = "chacha_neutral.png"
-image chacha phone = "chacha_phone.png"
 image juice neutral = "juice_neutral.png"
-image juice phone = "juice_phone.png"
 image soda neutral = "soda_neutral.png"
-image soda phone = "soda_phone.png"
 image whiskey neutral = "whiskey_neutral.png"
+
+image phone mako = "phone_mako_orange.png"
+image phone chacha = "phone_chacha.png"
+image phone juice = "phone_juice.png"
+image phone soda = "phone_soda.png"
+image phone whiskey = "phone_whiskey.png"
 
 image bg bedroom = "bg_bedroom.png"
 image bg shop = "bg_shop.png"
@@ -42,7 +44,7 @@ label start:
 
 ################################################################################
 label tag_yourself:
-    show juice phone at right with easeinright
+    show phone juice at right with easeinright
     show mako neutral at left with easeinleft
     j "MAKO. i found another one of those 'tag yourself' memes"
     j "which one are you? i am definitely tom"
@@ -56,28 +58,28 @@ label tag_yourself:
             $ pointsSoda += 1
             scene bg bedroom
             show mako neutral at left
-            show juice phone at right
+            show phone juice at right
             m "Juice we've been friends since forever ago. I'm def Tom"
             j "Yeah me too"
         "Burgos":
             $ pointsSoda += 2
             scene bg bedroom
             show mako neutral at left
-            show juice phone at right
+            show phone juice at right
             m "i'm burgos lol I can never figure out what gifts to buy people"
             j "yeah I love burgos. I love burgers"
         "Chrispy":
             $ pointsChacha += 2
             scene bg bedroom
             show mako neutral at left
-            show juice phone at right
+            show phone juice at right
             m "extreme chrispy. i CANNOT have people wearing shoes indoors"
             j "yeah. why do people do that?"
         "Spudina":
             $ pointsWhiskey += 2
             scene bg bedroom
             show mako neutral at left
-            show juice phone at right
+            show phone juice at right
             m "spudina. when i sleep, i SLEEP."
             j "did I wake u up just now by texting u a meme"
             m "you woke me up from "
@@ -108,20 +110,21 @@ label tag_yourself:
 
 ################################################################################
 label group_chat:
-    show mako neutral at left with move
-    show juice neutral at left with move
-    show chacha neutral at right with dissolve
-    show soda neutral at right with dissolve
-    show whiskey neutral at right with dissolve
+    show mako neutral at left with easeinleft
+    show phone mako at right with easeinright
 
     m "yo poops"
+    show phone whiskey
     w "sup mako"
     m "me and Juice were thinking about a picnic get-together tomorrow"
+    show phone juice
     j "yes. picnic"
     j "I will bring juice"
     m "I want to see everyone one last time before the end of summer"
+    show phone whiskey
     w "Food is always a good idea"
     w "count me in tomorrow"
+    show phone chacha
     c "ahhh...that sounds so fun!"
     c "but, I might be too busy. I have to study for my college prep exams next week"
 
@@ -139,11 +142,15 @@ label group_chat:
             m "that's too bad, but good luck with your prep exams"
             c "thanks!! Just need to go through 6 more chapters and an essay before tonight and I'll be on track"
 
+    show phone whiskey
     w "Chacha you should come anyway! College can come later"
     w "Uhh, I mean, College PREP can come later"
+    show phone chacha
     c "I wish, but I really need to catch up while it's still summmer"
+    show phone whiskey
     w "but summer is FOR hanging out. and this is the last one we'll get."
     w "why waste it by studying?"
+    show phone chacha
     c "waste??"
 
     menu:
@@ -178,7 +185,9 @@ label group_chat:
 ################################################################################
 label morning:
     scene bg bedroom with fade
+    show phone mako with dissolve
     "\[ SQWAK \[ SQWAK \[ SQWAK \[" with vpunch
+    hide phone with dissolve
     show mako neutral with dissolve
 
     menu:
@@ -188,7 +197,9 @@ label morning:
             m "(And don't close y...your...eyes...)"
             hide mako with easeoutbottom
             scene bg bedroom with fade
+            show phone mako with dissolve
             "\[ SQWAK \[ SQWAK \[ SQWAK \[" with vpunch
+            hide phone with dissolve
             show mako neutral with dissolve
             m "(I OVERSLEPT UNTIL 10 AM AGAIN)" with vpunch
             m "(This is why I don't get the worm.)"
@@ -201,15 +212,14 @@ label morning:
             m "(Ahh, 10 AM...a proper time to wake up)"
             m "(The early bird can keep that worm. Who needs worms?)"
 
-    hide mako with dissolve
-    show soda phone with dissolve
-    "\[ RIBBIT \[ RIBBIT \["
-    show soda phone at right with easeinright
-    show mako neutral at left with dissolve
-    m "(Perfect timing, Mako.)"
+    show phone mako at right with easeinright
+    show mako neutral at left with easeinleft
+    "\[ OOK \[ OOK \["
+    m "(Perfect timing.)"
+    show phone soda
     s "hey mako! went out to get some stuff for tonight. if u need anything meet me at the grocery store in 30"
     m "(30 minutes?! Better get ready fast)" with vpunch
-    hide soda phone with dissolve
+    hide phone soda with dissolve
     hide mako with easeoutright
 
 ################################################################################
@@ -238,12 +248,12 @@ label bananas:
     s "Mako, did you know there's a proper way to peel bananas?"
 
     menu:
-        s "Apparently, you DON'T peel at the end with the stem."
+        s "Apparently, you DON'T peel bananas by the stem."
         "Why not peel the stem?":
             $ pointsSoda += 1
-            m "Oh, how come? I thought the stem made it easier to peel."
-            s "Right, right, but if you DON'T peel it, the stem makes it easier to HOLD!"
-            s "Crazy right? Do it the hard way first and it's easier later."
+            m "Oh, how come? I thought the stem made peeling easier."
+            s "Right. But if you DON'T peel it, the stem makes it easy to hold the banana while you eat that final last bite."
+            s "Crazy, huh? Do it the hard way first and it's easier later."
             m "Huh!"
         "I knew that already!":
             m "Yeah I heard that one before! You pinch the other end and then hold onto the stem."
