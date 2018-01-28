@@ -1,8 +1,10 @@
-define m = Character("Mako")
-define c = Character("Chacha")
-define j = Character("Juice")
-define s = Character("Soda")
-define w = Character("Whiskey")
+define m = Character("Mako", who_color="#eeee66ee")
+define c = Character("Chacha", who_color="#de6a99")
+define j = Character("Juice", who_color="#9cd847")
+define s = Character("Soda", who_color="#e4af7a")
+define w = Character("Whiskey", who_color="#6191e8")
+
+define fade = Fade(0.5, 0.5, 0.5)
 
 image mako neutral = "mako_neutral.png"
 image mako phone = "mako_phone_orange.png"
@@ -11,6 +13,7 @@ image chacha phone = "chacha_phone.png"
 image juice neutral = "juice_neutral.png"
 image juice phone = "juice_phone.png"
 image soda neutral = "soda_neutral.png"
+image soda phone = "soda_phone.png"
 image whiskey neutral = "whiskey_neutral.png"
 
 image bg bedroom = "bg_bedroom.png"
@@ -23,6 +26,8 @@ label start:
     $ pointsChacha = 0
     $ pointsSoda = 0
     $ pointsWhiskey = 0
+
+    jump morning
 
     scene bg bedroom with fade
     "\[ \"...just finish that with a slice of fresh lime - and there you have it. Delicious egg stir-fry with rice noodles!\" \["
@@ -175,13 +180,13 @@ label morning:
     scene bg bedroom with fade
     "\[ SQWAK \[ SQWAK \[ SQWAK \[" with vpunch
     show mako neutral with dissolve
-    m "(ugghh my alarm...it's 7 AM)"
 
     menu:
+        m "(Ugghh...it's 7 AM)"
         "Wake up right now":
-            m "(OK! I'm waking up! Rise and shine, Mako!!)"
-            m "(and don't close y...your...eyes...)"
-            hide mako with moveoutbottom
+            m "(OK, I'm waking up! Rise and shine, Mako!!)"
+            m "(And don't close y...your...eyes...)"
+            hide mako with easeoutbottom
             scene bg bedroom with fade
             "\[ SQWAK \[ SQWAK \[ SQWAK \[" with vpunch
             show mako neutral with dissolve
@@ -189,12 +194,23 @@ label morning:
             m "(This is why I don't get the worm.)"
         "Snooze":
             m "(I know myself well. I can't get up this early)"
-            m "(goodnight)"
-            hide mako with moveoutbottom
+            m "(Goodnight Mako.)"
+            hide mako with easeoutbottom
             scene bg bedroom with fade
             show mako neutral with dissolve
-            m "(ahh, 10 AM...a proper time to wake up)"
-            m "(the early bird can keep that worm. Who needs worms?)"
+            m "(Ahh, 10 AM...a proper time to wake up)"
+            m "(The early bird can keep that worm. Who needs worms?)"
+
+    hide mako with dissolve
+    show soda phone with dissolve
+    "\[ RIBBIT \[ RIBBIT \["
+    show soda phone at right with easeinright
+    show mako neutral at left with dissolve
+    m "(Perfect timing, Mako.)"
+    s "hey mako! went out to get some stuff for tonight. if u need anything meet me at the grocery store in 30"
+    m "(30 minutes?! Better get ready fast)" with vpunch
+    hide soda phone with dissolve
+    hide mako with easeoutright
 
 ################################################################################
 label shop_soda:
@@ -206,35 +222,37 @@ label shop_soda:
     m "(Some...{color=#f48}balloons{/color} for decoration!)"
     m "(And {color=#f48}chicken{/color} to make my stirfry...)"
     m "(That should be good for now.)"
-    m "(Soda said he'd be at the entrance. Where'd that monkey run off to?)"
+    m "(Soda said to meet him at the front. Where'd that monkey run off to?)"
     m "(Oh, I think I see him!)"
     m "SODA! \[" with vpunch
     show mako at left with move
     show soda neutral at right with moveinright
     s "Hey Makooo."
     s "Sorry, I said I'd be at the entrance but then I got really carried away by the fruit aisle."
-    s "They're doing a half-off sale on bananas."
-    s "HALF. OFF." with vpunch
+    s "They're doing a two-for-one sale on bananas."
+    s "TWO. FOR ONE." with vpunch
     m "Oh! That's bananas."
 
 ################################################################################
 label bananas:
     s "Mako, did you know there's a proper way to peel bananas?"
-    s "Apparently, you DON'T peel at the end with the stem."
 
     menu:
+        s "Apparently, you DON'T peel at the end with the stem."
         "Why not peel the stem?":
             $ pointsSoda += 1
-            m "Oh, how come? The stem made it easier to peel."
+            m "Oh, how come? I thought the stem made it easier to peel."
             s "Right, right, but if you DON'T peel it, the stem makes it easier to HOLD!"
             s "Crazy right? Do it the hard way first and it's easier later."
             m "Huh!"
         "I knew that already!":
-            m "Yeah I heard that one before!"
+            m "Yeah I heard that one before! You pinch the other end and then hold onto the stem."
             s "Ah! I didn't think you were a banana bird."
-            m "I'm more of a clementine bird! But I know my foods."
+            m "I don't really like bananas, I just watch TONS of food videos online."
 
-    m "Anyway, let's find the picnic stuff!"
+    # TODO
+    s ""
+    m "Let's find the picnic stuff before we forget!"
     s "Oh yeah! I already went ahead and picked out some {color=#f48}cutlery{/color}, a {color=#f48}blanket{/color}..."
     s "Even some {color=#f48}chicken{/color} for that stirfry you said you'd make."
     m "Wow Soda, you're the best!"
