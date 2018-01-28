@@ -16,66 +16,69 @@ image whiskey neutral = "whiskey_neutral.png"
 image bg bedroom = "bg_bedroom.png"
 image bg shop = "bg_shop.png"
 image bg chathyme = "bg_chathyme.png"
-image bg meme = "bg_meme.png"
+image bg meme = "bg_bedroom_meme.png"
 
+################################################################################
 label start:
     $ pointsChacha = 0
     $ pointsSoda = 0
     $ pointsWhiskey = 0
 
     scene bg bedroom with fade
-    "\[ \"...and just finish that with a fresh lime - and you've got yourself a delicious egg stir fry with rice noodles!\" \["
+    "\[ \"...just finish that with a slice of fresh lime - and there you have it. Delicious egg stir-fry with rice noodles!\" \["
     show mako neutral with dissolve
     m "(Uggghh)"
     m "(Did I just watch recipe videos for 6 hours straight?)"
-    m "(I can't even cook that well!!!)"
+    m "(I can't even cook that well!)"
     m "(Although...no one can cook like Jordan Lambsey.)"
-    "\[ RIBBIT \[ RIBBIT \[" with vpunch
-    m "(Oh, my phone...Juice is messaging me!)"
+    "\[ RIBBIT \[ RIBBIT \["
+    m "(oh, my phone...Juice is messaging me!)"
     jump tag_yourself
 
+################################################################################
 label tag_yourself:
-    show juice phone at right with moveinright
-    show mako neutral at left with move
+    show juice phone at right with easeinright
+    show mako neutral at left with easeinleft
     j "MAKO. i found another one of those 'tag yourself' memes"
     j "which one are you? i am definitely tom"
-    scene bg meme with dissolve
+    scene bg meme
 
     menu:
+        "(Press H to show/hide options)"
         "Tom":
             $ pointsWhiskey += 1
             $ pointsChacha += 1
             $ pointsSoda += 1
-            scene bg bedroom with dissolve
-            show mako neutral at left with dissolve
-            show juice phone at right with dissolve
+            scene bg bedroom
+            show mako neutral at left
+            show juice phone at right
             m "Juice we've been friends since forever ago. I'm def Tom"
             j "Yeah me too"
         "Burgos":
             $ pointsSoda += 2
-            scene bg bedroom with dissolve
-            show mako neutral at left with dissolve
-            show juice phone at right with dissolve
+            scene bg bedroom
+            show mako neutral at left
+            show juice phone at right
             m "i'm burgos lol I can never figure out what gifts to buy people"
             j "yeah I love burgos. I love burgers"
         "Chrispy":
             $ pointsChacha += 2
-            scene bg bedroom with dissolve
-            show mako neutral at left with dissolve
-            show juice phone at right with dissolve
+            scene bg bedroom
+            show mako neutral at left
+            show juice phone at right
             m "extreme chrispy. i CANNOT have people wearing shoes indoors"
             j "yeah. why do people do that?"
         "Spudina":
             $ pointsWhiskey += 2
-            scene bg bedroom with dissolve
-            show mako neutral at left with dissolve
-            show juice phone at right with dissolve
+            scene bg bedroom
+            show mako neutral at left
+            show juice phone at right
             m "spudina. when i sleep, i SLEEP."
             j "did I wake u up just now by texting u a meme"
             m "you woke me up from "
 
-    j "I wonder who our other friends would be"
-    j "Have you talked to any of them recently?"
+    j "i wonder who our other friends would be"
+    j "have you talked to any of them recently?"
 
     menu:
         "I've been meaning to...":
@@ -98,6 +101,7 @@ label tag_yourself:
     m "(ok, gotta message the group)"
     jump group_chat
 
+################################################################################
 label group_chat:
     show mako neutral at left with move
     show juice neutral at left with move
@@ -166,6 +170,7 @@ label group_chat:
     m "soda you're the best"
     m "I'll come with you tomorrow"
 
+################################################################################
 label morning:
     scene bg bedroom with fade
     "\[ SQWAK \[ SQWAK \[ SQWAK \[" with vpunch
@@ -191,6 +196,7 @@ label morning:
             m "(ahh, 10 AM...a proper time to wake up)"
             m "(the early bird can keep that worm. Who needs worms?)"
 
+################################################################################
 label shop_soda:
     scene bg shop with fade
     show mako neutral with dissolve
@@ -211,6 +217,7 @@ label shop_soda:
     s "HALF. OFF." with vpunch
     m "Oh! That's bananas."
 
+################################################################################
 label bananas:
     s "Mako, did you know there's a proper way to peel bananas?"
     s "Apparently, you DON'T peel at the end with the stem."
@@ -264,6 +271,7 @@ label bananas:
             m "Well, are you still going to pick up that cake?"
             s "Might as well, now."
 
+################################################################################
 label talk_chacha:
     scene bg chathyme with fade
     show mako neutral with dissolve
@@ -276,9 +284,31 @@ label talk_chacha:
     m ""
 
     c "I don't think I'll be able to come tonight..."
-    c "I still have a ton of"
+    c "I still have a ton of work to do."
     m "It's OK."
 
+    menu:
+        "You should take a break, anyway":
+            m "Even if you can't make it, I think you should take a break from studying."
+            c "Yeah! That's why I'm working the shift at Chathyme right now."
+            m "No, I mean a REAL break! Like, some time for yourself."
+            c "Oh...how do you mean?"
+            menu:
+                "Find time to just relax":
+                    m "You just need to put aside time to recharge yourself."
+                    m "Like sometimes I'll just watch videos for HOURS, and kinda just drown out the world."
+                    c "I don't know, Mako, it feels like time I could just spend ACTUALLY doing stuff..."
+                    m "Maybe, but when I take breaks, I can do important stuff "
+                    c "..."
+                    c "Yeah..."
+                    c "I guess I've been really hard on myself. I'm sure I studied well already, at this point I'm just pushing myself too far."
+                    m "Yeah! Don't force yourself to work past your limit!"
+                    m "And hey, if you can't make it tonight, that's totally cool. We would just like it if you did, that's all."
+                    c ""
+                "Find something new to do":
+                    m ""
+
+################################################################################
 label talk_whiskey:
     m "hey whiskey"
     w "mako!! good idea with the picnic" with vpunch
