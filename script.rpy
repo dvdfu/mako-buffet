@@ -7,19 +7,23 @@ define w = Character("Whiskey")
 image mako neutral = "mako_neutral.png"
 image mako phone = "mako_phone_orange.png"
 image chacha neutral = "chacha_neutral.png"
+image chacha phone = "chacha_phone.png"
 image juice neutral = "juice_neutral.png"
 image juice phone = "juice_phone.png"
 image soda neutral = "soda_neutral.png"
 image whiskey neutral = "whiskey_neutral.png"
 
-image bg room = "background.jpg"
+image bg bedroom = "bg_bedroom.png"
+image bg shop = "bg_shop.png"
+image bg chathyme = "bg_chathyme.png"
+image bg meme = "bg_meme.png"
 
 label start:
     $ pointsChacha = 0
     $ pointsSoda = 0
     $ pointsWhiskey = 0
 
-    scene bg room with fade
+    scene bg bedroom with fade
     "\[ \"...and just finish that with a fresh lime - and you've got yourself a delicious egg stir fry with rice noodles!\" \["
     show mako neutral with dissolve
     m "(Uggghh)"
@@ -34,38 +38,41 @@ label tag_yourself:
     show juice phone at right with moveinright
     show mako neutral at left with move
     j "MAKO. i found another one of those 'tag yourself' memes"
-    j "which one is you?"
-    hide juice with dissolve
-    show memes at right with dissolve
-    j "i am definitely tom"
+    j "which one are you? i am definitely tom"
+    scene bg meme with dissolve
 
     menu:
-        "Brago":
-            $ pointsSoda += 2
-            hide memes with dissolve
-            show juice phone at right with dissolve
-            m "I'm brago lol I can never figure out what gifts to buy people!!"
-            j "yeah I love brago. I love burgers"
-        "Chrispy":
-            $ pointsChacha += 2
-            hide memes with dissolve
-            show juice phone at right with dissolve
-            m "not sure what 'Huge Brother' means but I'm PRETTY SURE that's me"
-            j "I don't know about huge brother haha"
-        "Spudina":
-            $ pointsWhiskey += 2
-            hide memes with dissolve
-            show juice phone at right with dissolve
-            m "Spudina!! I think I'm pretty easy going"
-            j "That potato makes me want some fries"
         "Tom":
             $ pointsWhiskey += 1
             $ pointsChacha += 1
             $ pointsSoda += 1
-            hide memes with dissolve
+            scene bg bedroom with dissolve
+            show mako neutral at left with dissolve
             show juice phone at right with dissolve
             m "Juice we've been friends since forever ago. I'm def Tom"
             j "Yeah me too"
+        "Burgos":
+            $ pointsSoda += 2
+            scene bg bedroom with dissolve
+            show mako neutral at left with dissolve
+            show juice phone at right with dissolve
+            m "i'm burgos lol I can never figure out what gifts to buy people"
+            j "yeah I love burgos. I love burgers"
+        "Chrispy":
+            $ pointsChacha += 2
+            scene bg bedroom with dissolve
+            show mako neutral at left with dissolve
+            show juice phone at right with dissolve
+            m "extreme chrispy. i CANNOT have people wearing shoes indoors"
+            j "yeah. why do people do that?"
+        "Spudina":
+            $ pointsWhiskey += 2
+            scene bg bedroom with dissolve
+            show mako neutral at left with dissolve
+            show juice phone at right with dissolve
+            m "spudina. when i sleep, i SLEEP."
+            j "did I wake u up just now by texting u a meme"
+            m "you woke me up from "
 
     j "I wonder who our other friends would be"
     j "Have you talked to any of them recently?"
@@ -160,8 +167,8 @@ label group_chat:
     m "I'll come with you tomorrow"
 
 label morning:
-    scene bg room with fade
-    "\[ SQWAK SQWAK SQWAK \[" with vpunch
+    scene bg bedroom with fade
+    "\[ SQWAK \[ SQWAK \[ SQWAK \[" with vpunch
     show mako neutral with dissolve
     m "(ugghh my alarm...it's 7 AM)"
 
@@ -170,8 +177,8 @@ label morning:
             m "(OK! I'm waking up! Rise and shine, Mako!!)"
             m "(and don't close y...your...eyes...)"
             hide mako with moveoutbottom
-            show bg room with fade
-            "\[ SQWAK SQWAK SQWAK \[" with vpunch
+            scene bg bedroom with fade
+            "\[ SQWAK \[ SQWAK \[ SQWAK \[" with vpunch
             show mako neutral with dissolve
             m "(I OVERSLEPT UNTIL 10 AM AGAIN)" with vpunch
             m "(This is why I don't get the worm.)"
@@ -179,13 +186,13 @@ label morning:
             m "(I know myself well. I can't get up this early)"
             m "(goodnight)"
             hide mako with moveoutbottom
-            show bg room with fade
+            scene bg bedroom with fade
             show mako neutral with dissolve
             m "(ahh, 10 AM...a proper time to wake up)"
             m "(the early bird can keep that worm. Who needs worms?)"
 
-
 label shop_soda:
+    scene bg shop with fade
     show mako neutral with dissolve
     m "(OK, I should review everything I need to buy today.)"
     m "(I'll need some {color=#f48}cutlery{/color} for everyone...)"
@@ -203,6 +210,8 @@ label shop_soda:
     s "They're doing a half-off sale on bananas."
     s "HALF. OFF." with vpunch
     m "Oh! That's bananas."
+
+label bananas:
     s "Mako, did you know there's a proper way to peel bananas?"
     s "Apparently, you DON'T peel at the end with the stem."
 
@@ -224,6 +233,52 @@ label shop_soda:
     m "Wow Soda, you're the best!"
     s "Anything else before we head out?"
 
+    menu:
+        "Bananas":
+            m "Oh yeah, we definitely need some bananas."
+            s "Really?? This is my lucky day."
+            s "We can buy TWICE AS MANY because they're HALF OFF!"
+            m "Yeah!!"
+        "Balloons":
+            m "Yeah, I thought balloons would be a really nice touch."
+
+    s "By the way, the birthday cake should be ready in two hours."
+    m "...Huh?"
+    s "The birthday cake? For Chacha's party tonight?"
+    m "..."
+    s "..."
+    m "Chacha's birthday was 3 months ago, today was just a get-together"
+    s "Ohhh"
+    s "OHHHHHHHhh my gosh I'm sorry"
+    s "I thought it was like a surprise party and we were trying to get Chacha to come."
+    m "Hooooowww did this happen."
+
+    menu:
+        "This is hilarious":
+            m "This is honestly kind of funny."
+            s "Yeah?"
+            m "Yeah! I mean now we have cake."
+        "I should've been more clear":
+            m "Ahhh I can't believe I let that happen! I wasn't clear enough."
+            s "Mako it's my bad, really!"
+            m "Well, are you still going to pick up that cake?"
+            s "Might as well, now."
+
+label talk_chacha:
+    scene bg chathyme with fade
+    show mako neutral with dissolve
+    m "(Good job Mako! You actually went out of the house and did some stuff today.)"
+    m "(Before I go home, I'll stop by Chathyme and see how Chacha's doing)"
+    show mako neutral at left with move
+    show chacha neutral at right with moveinright
+    c "Hey, welcome to Chathyme!"
+    c "OH! Hi Mako!" with vpunch
+    m ""
+
+    c "I don't think I'll be able to come tonight..."
+    c "I still have a ton of"
+    m "It's OK."
+
 label talk_whiskey:
     m "hey whiskey"
     w "mako!! good idea with the picnic" with vpunch
@@ -239,8 +294,5 @@ label talk_whiskey:
     menu:
         "I'm going to talk to her about that":
             m "actually..."
-
-
-label talk_chacha:
 
 return
