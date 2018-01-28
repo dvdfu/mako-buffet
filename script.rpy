@@ -1,4 +1,4 @@
-define m = Character("Mako", who_color="#eeee66ee")
+define m = Character("Mako", who_color="#eee66e")
 define c = Character("Chacha", who_color="#de6a99")
 define j = Character("Juice", who_color="#9cd847")
 define s = Character("Soda", who_color="#e4af7a")
@@ -6,11 +6,11 @@ define w = Character("Whiskey", who_color="#6191e8")
 
 define fade = Fade(0.5, 0.5, 0.5)
 
-image mako neutral = "mako_neutral.png"
-image chacha neutral = "chacha_neutral.png"
-image juice neutral = "juice_neutral.png"
-image soda neutral = "soda_neutral.png"
-image whiskey neutral = "whiskey_neutral.png"
+image mako neutral = "mako_neutral.png" # doesn't use commas, uses !
+image chacha neutral = "chacha_neutral.png" # regular speech, use of ellipses
+image juice neutral = "juice_neutral.png" # no punctuation but has auto-caps letters. Short sentences
+image soda neutral = "soda_neutral.png" # keyboard smashes and uses multi !
+image whiskey neutral = "whiskey_neutral.png" # lower case but sometimes caps for emphasis
 
 image phone mako = "phone_mako_orange.png"
 image phone chacha = "phone_chacha.png"
@@ -29,12 +29,12 @@ label start:
     $ pointsSoda = 0
     $ pointsWhiskey = 0
 
-    jump morning
+    jump group_chat
 
     scene bg bedroom with fade
     "\[ \"...just finish that with a slice of fresh lime - and there you have it. Delicious egg stir-fry with rice noodles!\" \["
     show mako neutral with dissolve
-    m "(Uggghh)"
+    m "(Uggghh how is it already 9 PM)"
     m "(Did I just watch recipe videos for 6 hours straight?)"
     m "(I can't even cook that well!)"
     m "(Although...no one can cook like Jordan Lambsey.)"
@@ -60,21 +60,21 @@ label tag_yourself:
             show mako neutral at left
             show phone juice at right
             m "Juice we've been friends since forever ago. I'm def Tom"
-            j "Yeah me too"
+            j "Hey me too"
         "Burgos":
             $ pointsSoda += 2
             scene bg bedroom
             show mako neutral at left
             show phone juice at right
             m "i'm burgos lol I can never figure out what gifts to buy people"
-            j "yeah I love burgos. I love burgers"
+            j "Yeah I love burgos. And I love burgers"
         "Chrispy":
             $ pointsChacha += 2
             scene bg bedroom
             show mako neutral at left
             show phone juice at right
             m "extreme chrispy. i CANNOT have people wearing shoes indoors"
-            j "yeah. why do people do that?"
+            j "Yeah. Why do people do that?"
         "Spudina":
             $ pointsWhiskey += 2
             scene bg bedroom
@@ -110,77 +110,92 @@ label tag_yourself:
 
 ################################################################################
 label group_chat:
+    scene bg bedroom with fade
     show mako neutral at left with easeinleft
     show phone mako at right with easeinright
 
     m "yo poops"
     show phone whiskey
     w "sup mako"
-    m "me and Juice were thinking about a picnic get-together tomorrow"
+    m "me and juice were thinking about a picnic get together tomorrow!"
     show phone juice
-    j "yes. picnic"
+    j "Yep. Beach picnic"
     j "I will bring juice"
-    m "I want to see everyone one last time before the end of summer"
+    m "i want to see everyone one last time before the end of summer!"
     show phone whiskey
-    w "Food is always a good idea"
-    w "count me in tomorrow"
+    w "the beach sounds far but i'm ALWAYS down for food"
+    w "count me IN"
     show phone chacha
     c "ahhh...that sounds so fun!"
-    c "but, I might be too busy. I have to study for my college prep exams next week"
+    c "but I'll be busy with work and school tmrw...so I'm not sure"
 
     menu:
         "Come anyway!":
-            $ pointsWhiskey += 1
-            m "(I don't want to sound pushy, but...I want Chacha to come!)"
-            m "Chacha you should try to make it anyway"
-            m "it won't be the same without you"
-            c "I'm already really behind on studying so I really don't know if I can."
-            c "sorry Mako"
-            m "aw, don't be Chacha"
-        "OK, good luck studying :(":
+            m "chacha you should try to make it anyway"
+            m "it won't be the same without you!"
+            c "sorry...I'll see how much studying I can cram tonight..."
+        "We'll miss you":
             $ pointsChacha += 1
-            m "that's too bad, but good luck with your prep exams"
-            c "thanks!! Just need to go through 6 more chapters and an essay before tonight and I'll be on track"
+            m "noooo chacha"
+            m "promise you'll see us before summer ends tho!"
+            c "aww...I'll try...!"
 
     show phone whiskey
-    w "Chacha you should come anyway! College can come later"
-    w "Uhh, I mean, College PREP can come later"
+    w "chacha you should come anyway. college can wait til later"
+    w "i mean it's college PREP, not even college lol"
     show phone chacha
-    c "I wish, but I really need to catch up while it's still summmer"
+    c "I also had a shift at Chathyme til 4"
     show phone whiskey
-    w "but summer is FOR hanging out. and this is the last one we'll get."
-    w "why waste it by studying?"
+    w "it's the SUMMER! don't waste it stressing about school stuff lol"
     show phone chacha
-    c "waste??"
+    c "(Chacha is typing...)"
 
     menu:
-        "(Say something)":
+        m "(Oh fluff maybe I should say something)"
+        "Reschedule?":
             $ pointsChacha += 2
-            m "uhh. maybe we can just reschedule to next week!"
-            w "I'm going out of town with my family later"
+            m "uhh! maybe we can just reschedule to next week!"
+            show phone whiskey
+            w "I'm going out of town with my family then"
+            show phone juice
             j "My juice is going to expire"
+            show phone chacha
             c "I'll probably still be busy...but I appreciate it Mako"
             m "awww feathers"
+        "Cut that out, Whiskey!":
+            $ pointsChacha += 2
+            m "hey come on whiskey! it's ok if she's busy"
+            show phone whiskey
+            w "yeah i know, i'm just saying lol"
         "(Just listen)":
             $ pointsWhiskey += 1
-            m "(I don't want to step on any toes here...)"
-            w "yeah...it seems like a waste of a good time to relax"
-            c "there is never time to relax!!" with vpunch
-            c "anyway"
+            # TODO
 
-    c "I'll let you know later if I can make it tomorrow. I really need to finish this chapter tonight"
+    show phone chacha
+    c "I'll let everyone know later if I can make it tmrw. I need to finish studying tonight"
     m "OK!"
-    c "if I can't make it, have fun..."
-    c "(Chacha went offline)"
-    m "(oh...poor Chacha)"
-    s "HEY GUYS sorry I was busy at the jungle gym, working on the monkey bars"
-    s "I might have broke the bars. and the Monkeys."
-    s "What'd I miss"
-    m "we were trying to make plans for a picnic and get Chacha to come"
+    c "if I can't make it, have fun"
+    show phone whiskey
+    w "we'll try"
+    m "(oh...poor Chacha! I hope she doesn't overwork herself)"
+    show phone soda
+    s "HEY GUYS sry I was busy at the jungle gym!!!"
+    show phone juice
+    j "Hi Soda"
+    show phone soda
+    s "my friend told me they had new monkey bars at the gym. so I spent FOREVER looking for them"
+    s "I asked the guy there and he was like uhhhh we only have pull up bars"
+    s "it took me an hour before I realized my friend meant MONKEY ENERGY bars. like that vegan protein bar brand"
+    m "SODA OMG"
+    show phone whiskey
+    w "classic soda"
+    show phone soda
+    s "yeah uhhh what'd I miss here"
+    m "we were trying to make plans for a picnic tomorrow and get Chacha to come"
+    show phone soda
     s "OH WORD!!!"
     s "I'll go out first thing tomorrow to buy some stuff"
-    m "soda you're the best"
-    m "I'll come with you tomorrow"
+    m "soda you're the best!"
 
 ################################################################################
 label morning:
