@@ -25,87 +25,88 @@ image bg meme = "bg_bedroom_meme.png"
 
 ################################################################################
 label start:
-    $ pointsChacha = 0
-    $ pointsSoda = 0
-    $ pointsWhiskey = 0
-
-    jump group_chat
+    $ drink_choice = ""
+    $ chacha_going = False
 
     scene bg bedroom with fade
-    "\[ \"...just finish that with a slice of fresh lime - and there you have it. Delicious egg stir-fry with rice noodles!\" \["
+    "[[ \"...just finish that with a slice of fresh lime - and there you have it. Delicious egg stir-fry with rice noodles!\" [["
     show mako neutral with dissolve
     m "(Uggghh how is it already 9 PM)"
     m "(Did I just watch recipe videos for 6 hours straight?)"
-    m "(I can't even cook that well!)"
-    m "(Although...no one can cook like Jordan Lambsey.)"
-    "\[ RIBBIT \[ RIBBIT \["
-    m "(oh, my phone...Juice is messaging me!)"
+    m "(I can't even cook that well! But if I could...I'm SURE I'd have a popular cooking channel too)"
+    hide mako with dissolve
+    show phone juice with dissolve
+    "[[ RIBBIT [[ RIBBIT [["
+    show phone juice at right with easeinright
+    show mako neutral at left with dissolve
+    m "(My phone...Juice is messaging me!)"
     jump tag_yourself
 
 ################################################################################
 label tag_yourself:
-    show phone juice at right with easeinright
-    show mako neutral at left with easeinleft
-    j "MAKO. i found another one of those 'tag yourself' memes"
-    j "which one are you? i am definitely tom"
+    menu:
+        j "MAKO. I found another one of those 'tag yourself' memes"
+        "SHOW ME":
+            m "OMG SEND ME"
+        "A what?":
+            m "uhhh 'tag yourself'?"
+            j "Yeah it's like a list of pictures with personalities and you have to figure out which one you're closest to"
+            m "ohh yeah i think i've seen those before"
+
+    j "Which one are you? I'm definitely Tom"
     scene bg meme
 
     menu:
         "(Press H to show/hide options)"
         "Tom":
-            $ pointsWhiskey += 1
-            $ pointsChacha += 1
-            $ pointsSoda += 1
             scene bg bedroom
             show mako neutral at left
             show phone juice at right
             m "Juice we've been friends since forever ago. I'm def Tom"
             j "Hey me too"
         "Burgos":
-            $ pointsSoda += 2
             scene bg bedroom
             show mako neutral at left
             show phone juice at right
             m "i'm burgos lol I can never figure out what gifts to buy people"
             j "Yeah I love burgos. And I love burgers"
         "Chrispy":
-            $ pointsChacha += 2
             scene bg bedroom
             show mako neutral at left
             show phone juice at right
             m "extreme chrispy. i CANNOT have people wearing shoes indoors"
             j "Yeah. Why do people do that?"
         "Spudina":
-            $ pointsWhiskey += 2
             scene bg bedroom
             show mako neutral at left
             show phone juice at right
             m "spudina. when i sleep, i SLEEP."
-            j "did I wake u up just now by texting u a meme"
-            m "you woke me up from "
+            j "Did I wake you up just now by texting you a meme"
+            m "just assume i am always asleep tbh"
 
-    j "i wonder who our other friends would be"
-    j "have you talked to any of them recently?"
+    j "I wonder who our other friends would be"
+    j "Have you talked to any of them recently?"
 
     menu:
         "I've been meaning to...":
-            $ pointsSoda += 1
-            m "I've tried to get in touch with them, but I've been so busy..."
-            m "(you weren't busy, you were JUST WATCHING Jordan Lambsey)"
+            m "i tried to in touch with them but I've been so busy"
+            m "(I'm not busy, I was JUST WATCHING Jordan Lambsey)"
             j "Were you watching food videos again"
-            m "Okay yeah. I was"
+            m "okay yeah. i was lol"
         "I was busy watching videos":
-            $ pointsWhiskey += 1
-            $ pointsChacha += 1
-            m "Nope...I've holed myself up in my room tbh"
-            j "OK glad you're being honest mako."
+            m "nope...I've holed myself up in my room tbh"
+            j "OK glad you're being honest"
 
-    m "I should ask Soda, Whiskey, and Chacha how they're doing"
-    j "we should all do something together before the summer ends"
-    j "it'll be the last time we see each other for a long time"
-    j "maybe a picnic"
+    m "i should ask everyone how they're doing"
+    j "Yeah, we should all do something together before the summer ends"
+    j "It'll be the last time we see each other for a long time"
+    m "ohhh i could cook for everyone! i wanna try this chicken stirfry recipe"
+    m "maybe we should have a picnic?"
+    j "Yesss"
+    j "Like at a beach too"
     m "oh...that would be a great idea!"
-    m "(ok, gotta message the group)"
+    m "ok brb i'm gonna make some plans"
+    m "(Time to message the group)"
     jump group_chat
 
 ################################################################################
@@ -123,37 +124,35 @@ label group_chat:
     j "I will bring juice"
     m "i want to see everyone one last time before the end of summer!"
     show phone whiskey
-    w "the beach sounds far but i'm ALWAYS down for food"
+    w "the beach sounds kinda far but i'm ALWAYS down for food"
     w "count me IN"
     show phone chacha
-    c "ahhh...that sounds so fun!"
-    c "but I'll be busy with work and school tmrw...so I'm not sure"
+    c "ahhh that sounds so fun!"
+    c "I'll be busy with work and school tmrw...so I'm not sure yet"
 
     menu:
         "Come anyway!":
-            m "chacha you should try to make it anyway"
+            m "chacha you should try to make it"
             m "it won't be the same without you!"
             c "sorry...I'll see how much studying I can cram tonight..."
         "We'll miss you":
-            $ pointsChacha += 1
             m "noooo chacha"
             m "promise you'll see us before summer ends tho!"
             c "aww...I'll try...!"
 
     show phone whiskey
-    w "chacha you should come anyway. college can wait til later"
+    w "you should come anyway. college can wait til later"
     w "i mean it's college PREP, not even college lol"
     show phone chacha
     c "I also had a shift at Chathyme til 4"
     show phone whiskey
-    w "it's the SUMMER! don't waste it stressing about school stuff lol"
+    w "it's the SUMMER! don't waste it stressing about school/work stuff tbh"
     show phone chacha
-    c "(Chacha is typing...)"
+    c "waste??"
 
     menu:
         m "(Oh fluff maybe I should say something)"
         "Reschedule?":
-            $ pointsChacha += 2
             m "uhh! maybe we can just reschedule to next week!"
             show phone whiskey
             w "I'm going out of town with my family then"
@@ -163,13 +162,9 @@ label group_chat:
             c "I'll probably still be busy...but I appreciate it Mako"
             m "awww feathers"
         "Cut that out, Whiskey!":
-            $ pointsChacha += 2
             m "hey come on whiskey! it's ok if she's busy"
             show phone whiskey
             w "yeah i know, i'm just saying lol"
-        "(Just listen)":
-            $ pointsWhiskey += 1
-            # TODO
 
     show phone chacha
     c "I'll let everyone know later if I can make it tmrw. I need to finish studying tonight"
@@ -184,7 +179,7 @@ label group_chat:
     j "Hi Soda"
     show phone soda
     s "my friend told me they had new monkey bars at the gym. so I spent FOREVER looking for them"
-    s "I asked the guy there and he was like uhhhh we only have pull up bars"
+    s "I asked the guy there and he was like \"uhhhh we only have pull up bars\""
     s "it took me an hour before I realized my friend meant MONKEY ENERGY bars. like that vegan protein bar brand"
     m "SODA OMG"
     show phone whiskey
@@ -192,16 +187,24 @@ label group_chat:
     show phone soda
     s "yeah uhhh what'd I miss here"
     m "we were trying to make plans for a picnic tomorrow and get Chacha to come"
+    show phone juice
+    j "I was bringing juice"
     show phone soda
     s "OH WORD!!!"
     s "I'll go out first thing tomorrow to buy some stuff"
     m "soda you're the best!"
+    s "B)"
+    hide phone with easeoutright
+    show mako neutral at default with ease
+    m "(Alright, it's getting late, I'll call it a night)"
+    m "(Big day tomorrow!)"
+    hide mako with easeoutbottom
 
 ################################################################################
 label morning:
     scene bg bedroom with fade
     show phone mako with dissolve
-    "\[ SQWAK \[ SQWAK \[ SQWAK \[" with vpunch
+    "[[ SQWAK [[ SQWAK [[ SQWAK [[" with vpunch
     hide phone with dissolve
     show mako neutral with dissolve
 
@@ -213,7 +216,7 @@ label morning:
             hide mako with easeoutbottom
             scene bg bedroom with fade
             show phone mako with dissolve
-            "\[ SQWAK \[ SQWAK \[ SQWAK \[" with vpunch
+            "[[ SQWAK [[ SQWAK [[ SQWAK [[" with vpunch
             hide phone with dissolve
             show mako neutral with dissolve
             m "(I OVERSLEPT UNTIL 10 AM AGAIN)" with vpunch
@@ -229,7 +232,7 @@ label morning:
 
     show phone mako at right with easeinright
     show mako neutral at left with easeinleft
-    "\[ OOK \[ OOK \["
+    "[[ OOK [[ OOK [["
     m "(Perfect timing.)"
     show phone soda
     s "hey mako! went out to get some stuff for tonight. if u need anything meet me at the grocery store in 30"
@@ -242,14 +245,14 @@ label shop_soda:
     scene bg shop with fade
     show mako neutral with dissolve
     m "(OK, I should review everything I need to buy today.)"
-    m "(I'll need some {color=#f48}cutlery{/color} for everyone...)"
-    m "(Probably a nice {color=#f48}blanket{/color} to sit on...)"
-    m "(Some...{color=#f48}balloons{/color} for decoration!)"
-    m "(And {color=#f48}chicken{/color} to make my stirfry...)"
+    m "(I'll need some {color=#eee66e}cutlery{/color} for everyone...)"
+    m "(Probably a nice {color=#eee66e}blanket{/color} to sit on...)"
+    m "(Some...{color=#eee66e}balloons{/color} for decoration!)"
+    m "(And {color=#eee66e}chicken{/color} to make my stirfry...)"
     m "(That should be good for now.)"
     m "(Soda said to meet him at the front. Where'd that monkey run off to?)"
     m "(Oh, I think I see him!)"
-    m "SODA! \[" with vpunch
+    m "SODA! [[" with vpunch
     show mako at left with move
     show soda neutral at right with moveinright
     s "Hey Makooo."
@@ -265,7 +268,6 @@ label bananas:
     menu:
         s "Apparently, you DON'T peel bananas by the stem."
         "Why not peel the stem?":
-            $ pointsSoda += 1
             m "Oh, how come? I thought the stem made peeling easier."
             s "Right. But if you DON'T peel it, the stem makes it easy to hold the banana while you eat that final last bite."
             s "Crazy, huh? Do it the hard way first and it's easier later."
@@ -278,8 +280,8 @@ label bananas:
     # TODO
     s ""
     m "Let's find the picnic stuff before we forget!"
-    s "Oh yeah! I already went ahead and picked out some {color=#f48}cutlery{/color}, a {color=#f48}blanket{/color}..."
-    s "Even some {color=#f48}chicken{/color} for that stirfry you said you'd make."
+    s "Oh yeah! I already went ahead and picked out some {color=#eee66e}cutlery{/color}, a {color=#eee66e}blanket{/color}..."
+    s "Even some {color=#eee66e}chicken{/color} for that stirfry you said you'd make."
     m "Wow Soda, you're the best!"
     s "Anything else before we head out?"
 
@@ -315,33 +317,72 @@ label bananas:
             s "Might as well, now."
 
 ################################################################################
-label talk_chacha:
+label chathyme:
     scene bg chathyme with fade
     show mako neutral with dissolve
     m "(Good job Mako! You actually went out of the house and did some stuff today.)"
     m "(Before I go home, I'll stop by Chathyme and see how Chacha's doing)"
     show mako neutral at left with move
-    show chacha neutral at right with moveinright
+    show chacha neutral at right with easeinright
     c "Hey, welcome to Chathyme!"
-    c "OH! Hi Mako!" with vpunch
-    m ""
+    c "OH! Hey Mako! [[" with vpunch
+    m "Hi! I was on my way back home but figured you were still working."
+    c "My shift is just about over so I was wrapping up."
+    c "You missed the strangest customer just now. They were " # TODO
 
-    c "I don't think I'll be able to come tonight..."
-    c "I still have a ton of work to do."
-    m "It's OK."
+    # TODO
+    menu:
+        c "Did you want anything?"
+        "Roasted Milk Tea":
+            $ drink_choice = "roasted milk tea"
+            m "One roasted milk tea please! Regular sugar."
+        "Mango Shaved Ice":
+            $ drink_choice = "mango shaved ice"
+            m "A mango shaved ice please!"
+            c "Would you like ice with that? Hee hee"
+            m "Ohoho"
+            c "Because, like...it's already ice"
+            c "HAHAHA" with vpunch
+            m "Ahhhhha ha"
+
+    c "Alright, one [drink_choice] coming up!"
+    hide chacha with easeoutright
+
+################################################################################
+label talk_chacha:
+    scene bg chathyme with fade
+    show mako neutral at left with dissolve
+    show chacha neutral at right with easeinright
+
+    c "OK, one matcha green tea as requested!"
+    m "Oh, I ordered the [drink_choice]"
+    c "AH!! Oh my gosh..." with vpunch
+    m "It's okay! I drink pretty much anything at Chathyme."
+    c "I'm just embarrassed...I've been off like this the WHOLE day!"
+    m "What's wrong?"
+    c "I was up really late yesterday studying, and there's still more I need to catch up on tonight."
+    m "Chacha you're like the most studious person I know!!"
+    m "What do you have left to catch up?"
+    c "I mean, I went over my calculus textbook a ton of times already, but..."
+    c "Can I be SURE I know it well enough?" with vpunch
+    c "Does the limit not exist?"
+    m "Wuh"
+    c "If I'm going to a top engineering school in the fall, there's going to be so much competition..."
 
     menu:
-        "You should take a break, anyway":
+        c "I feel like I can't waste any time NOT studying."
+        "You should give yourself a break sometimes":
             m "Even if you can't make it, I think you should take a break from studying."
             c "Yeah! That's why I'm working the shift at Chathyme right now."
-            m "No, I mean a REAL break! Like, some time for yourself."
-            c "Oh...how do you mean?"
+            m "No, I mean a REAL break! Like, time away from work and school."
             menu:
-                "Find time to just relax":
+                c "A real break?"
+                "Find time for just yourself":
+                    $ chacha_going = True
                     m "You just need to put aside time to recharge yourself."
                     m "Like sometimes I'll just watch videos for HOURS, and kinda just drown out the world."
-                    c "I don't know, Mako, it feels like time I could just spend ACTUALLY doing stuff..."
-                    m "Maybe, but when I take breaks, I can do important stuff "
+                    c "I don't know, Mako, it feels like time I could spend doing REAL stuff..."
+                    m "Maybe, but when I take breaks, I can do the real stuff with more "
                     c "..."
                     c "Yeah..."
                     c "I guess I've been really hard on myself. I'm sure I studied well already, at this point I'm just pushing myself too far."
@@ -350,22 +391,22 @@ label talk_chacha:
                     c ""
                 "Find something new to do":
                     m ""
+        "We won't see each other for a long time":
+            m "I just think it'd be nice to hang out before all that school stuff starts."
+            m "Things are going to be poopy once we all head different ways. We should spend time together while we still can!"
+            c "Ohh...you already know I'm going to miss you, Mako!"
+            c "It's why I'm really torn between school and friends. They're both important to me."
+            c "And it doesn't help that Whiskey sometimes wants to decide FOR me which is more important."
+            m "I noticed you were a little upset...I'm sorry."
+            c "It's OK!"
 
-################################################################################
-label talk_whiskey:
-    m "hey whiskey"
-    w "mako!! good idea with the picnic" with vpunch
-    m "yes! same"
-    m "just checking what you're bringing tomorrow"
-    w "oh darn, were we supposed to bring food?"
-    m "kinda yeah"
-    m "I was planning to make some chicken stir fry for everyone BUT LIKE will it even turn out good?? WHO KNOWS!!"
-    w "I would eat your stirfry mako. there's no bottom limit for what I'd eat"
-    w "so hmmm food to bring..."
-    w "maybe I'll buy some mackerel? Chacha isn't coming so I won't have to bring as much"
+    if chacha_going:
+        c "I think I'll show up tonight!"
+        m "Yeah??"
+    else:
+        c "Anyway, I think I'm going to head home now."
+        c "I won't come tonight, but I hope you all have fun at the picnic!"
+        m "Thanks Chacha! Good luck with the studies!"
 
-    menu:
-        "I'm going to talk to her about that":
-            m "actually..."
 
 return
